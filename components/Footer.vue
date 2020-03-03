@@ -1,0 +1,13 @@
+<template>
+  <div class="bottom-navigation bg-white flex fixed bottom-0 h-12 w-full border-t border-gray-300">
+    <div class="nav-item w-1/3 flex justify-center">
+      <nuxt-link to="/"><img src="/images/home.svg" class="h-6 my-3"></nuxt-link>
+    </div>
+    <div class="nav-item w-1/3 flex justify-center">
+      <nuxt-link to="/users"><img src="/images/follow.svg" class="h-6 my-3"></nuxt-link>
+    </div>
+    <div class="nav-item w-1/3 flex justify-center">
+      <nuxt-link to="/users/tekitouid"><img src="/images/profile.svg" class="h-6 my-3"></nuxt-link>
+    </div>
+  </div>
+</template>
