@@ -5,7 +5,7 @@
         <a><img src="/images/post1.jpg" class="w-8 h-8 rounded-full" alt=""></a>
       </div>
       <div class="user-name leading-loose text-sm">
-        <p class="font-bold">cohki0305</p>
+        <p class="font-bold">{{ username }}</p>
       </div>
     </div>
     <div class="post-image w-full">
@@ -16,7 +16,27 @@
       <p>0</p>
     </div>
     <div class="message mx-4 text-sm">
-      <p>渋谷なう</p>
+      <p>{{ post.text }}</p>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      user: {
+        displayName: 'cohki0305'
+      },
+      post: {
+        text: '渋谷なう'
+      }
+    }
+  },
+  computed: {
+    username () {
+      return this.user.displayName.charAt(0).toUpperCase() + this.user.displayName.slice(1)
+    }
+  }
+}
+</script>
