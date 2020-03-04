@@ -24,19 +24,7 @@
 
 <script>
 export default {
-  data () {
-    return {
-      user: {
-        displayName: 'cohki0305',
-        photoURL: '/images/post0.jpg'
-      },
-      post: {
-        text: '渋谷なう',
-        image: '/images/post1.jpg'
-      },
-      beLiked: false
-    }
-  },
+  props: ['post', 'user', 'beLiked'],
   computed: {
     username () {
       return this.user.displayName.charAt(0).toUpperCase() + this.user.displayName.slice(1)
