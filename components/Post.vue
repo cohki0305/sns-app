@@ -12,7 +12,8 @@
       <img :src="post.image" alt="">
     </div>
     <div class="actions my-2 ml-4 flex">
-      <img src='/images/heart.svg' class="w-6 mr-3">
+      <img v-if="beLiked" src='/images/heart_active.svg' class="w-6 mr-3">
+      <img v-else src='/images/heart.svg' class="w-6 mr-3">
       <p>0</p>
     </div>
     <div class="message mx-4 text-sm">
@@ -32,7 +33,8 @@ export default {
       post: {
         text: '渋谷なう',
         image: '/images/post1.jpg'
-      }
+      },
+      beLiked: false
     }
   },
   computed: {
