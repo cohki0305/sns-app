@@ -3,7 +3,7 @@
   <div class="posts overflow-scroll mb-24">
     <post v-for="(post, index) in posts" :key="index" :post="post" />
   </div>
-  <div v-if="modalVisible" class="modal">
+  <div v-if="isAuthenticated && modalVisible" class="modal">
     <div class="actions mt-4 flex justify-between px-8">
       <div class="back-btn vertical-middle" @click="modalVisible = false">
         <img src="/images/back.svg" class="h-4">
@@ -34,6 +34,19 @@
       </el-input>
     </div>
   </div>
+  <div v-else-if="!isAuthenticated && modalVisible" class="modal">
+    <div class="actions mt-4 flex justify-between px-8">
+      <div class="back-btn vertical-middle" @click="modalVisible = false">
+        <img src="/images/back.svg" class="h-4">
+      </div>
+    </div>
+    <div class="modal_content p-8 w-full h-full relative">
+      <div class="flex justify-center">
+        <img src="/images/logo.png" class="w-32 my-32">
+      </div>
+      <el-button size="small" type="primary" @click="login">Login</el-button>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -50,10 +63,20 @@ export default {
       posts: [],
       imageUrl: null,
       text: null,
-      modalVisible: false
+      modalVisible: false,
+      isAuthenticated: false
     }
   },
   methods: {
+    login () {
+      const provider = new firebase.auth.GoogleAuthProvider()
+      firebase.auth().signInWithPopup(provider)
+        .then((result) => {
+          this.isAuthenticated = true
+        }).catch((error) => {
+          window.alert(error)
+        })
+    },
     async post () {
       await db.collection('posts').add({
         text: this.text,
