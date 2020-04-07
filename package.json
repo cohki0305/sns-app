@@ -13,8 +13,11 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
+    "element-ui": "^2.13.0",
     "firebase": "^7.9.3",
-    "nuxt": "^2.0.0"
+    "node-sass": "^4.13.1",
+    "nuxt": "^2.0.0",
+    "sass-loader": "^8.0.2"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^1.0.0"

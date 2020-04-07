@@ -37,7 +37,7 @@ html {
 }
 
 .modal {
-  backgroud: white;
+  background: white;
   width: 100%;
   height: 100%;
   position: fixed;
