@@ -53,6 +53,7 @@
 <script>
 import Post from '~/components/Post.vue'
 import { db, firebase } from '~/plugins/firebase'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
@@ -75,11 +76,12 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['setUser']),
     login () {
       const provider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithPopup(provider)
         .then((result) => {
-          this.isAuthenticated = true
+          this.setUser(result.user)
         }).catch((error) => {
           window.alert(error)
         })
