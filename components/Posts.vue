@@ -67,6 +67,11 @@ export default {
       isAuthenticated: false
     }
   },
+  computed: {
+    currentUser () {
+      return this.$store.state.user
+    },
+  },
   methods: {
     login () {
       const provider = new firebase.auth.GoogleAuthProvider()
