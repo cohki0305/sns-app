@@ -12,7 +12,7 @@
       <img :src="post.image" alt="">
     </div>
     <div class="actions my-2 ml-4 flex">
-      <img v-if="beLiked" src='/images/heart_active.svg' class="w-6 mr-3">
+      <img v-if="beLiked" src='/images/heart_active.svg' @click="unlike" class="w-6 mr-3">
       <img v-else src='/images/heart.svg' @click="like" class="w-6 mr-3">
       <p>0</p>
     </div>
@@ -36,11 +36,22 @@ export default {
       beLiked: false
     }
   },
+  mounted() {
+    this.likeRef = db.collection('posts').doc(this.post.id).collection('likes')
+    this.checkLikeStatus()
+  },
   methods: {
     async like () {
-      const likeRef = db.collection('posts').doc(this.post.id).collection('likes')
-      await likeRef.doc(this.currentUser.uid).set({ uid: this.currentUser.uid })
+      await this.likeRef.doc(this.currentUser.uid).set({ uid: this.currentUser.uid })
       this.beLiked = true
+    },
+    async unlike () {
+      await this.likeRef.doc(this.currentUser.uid).delete()
+      this.beLiked = false
+    },
+    async checkLikeStatus () {
+      const doc = await this.likeRef.doc(this.currentUser.uid).get()
+      this.beLiked = doc.exists
     }
   },
   computed: {
