@@ -28,20 +28,26 @@
         <span class="text-xs">0</span>
       </div>
     </div>
+    <post v-for="post in posts" :key="post.id" :post="post" :mode="'profile'" />
   </div>
 </template>
 
 <script>
 import { firebase, db } from '~/plugins/firebase'
 import { mapActions } from 'vuex'
+import Post from '~/components/Post'
 
 export default {
+  components: {
+    Post
+  },
   data () {
     return {
       user: {
         displayName: '',
         photoURL: ''
-      }
+      },
+      posts: []
     }
   },
   methods: {
@@ -60,6 +66,11 @@ export default {
     const userId = this.$route.params.id
     const doc = await db.collection('users').doc(userId).get()
     this.user = doc.data()
+
+    const snapshot = await db.collection('posts').where('userId', '==', userId).get()
+    snapshot.forEach((doc) => {
+      this.posts.push({ id: doc.id, ...doc.data() })
+    })
   }
 }
 </script>
