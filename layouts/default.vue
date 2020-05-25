@@ -21,7 +21,7 @@ export default {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.setUser(user)
-        db.collections('users').doc(user.uid).set({
+        db.collection('users').doc(user.uid).set({
           uid: user.uid,
           displayName: user.displayName,
           photoURL: user.photoURL
