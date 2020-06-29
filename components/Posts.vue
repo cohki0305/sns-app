@@ -123,7 +123,7 @@ export default {
         followings.push(doc.id)
       })
 
-      db.collection('posts').where('userId', 'in', followings).onSnapshot((snapshot) => {
+      db.collection('posts').where('userId', 'in', followings).orderBy('createdAt').onSnapshot((snapshot) => {
         snapshot.docChanges().forEach((change) => {
           const doc = change.doc
           if (change.type === 'added') {
