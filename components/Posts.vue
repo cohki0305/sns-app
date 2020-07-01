@@ -75,6 +75,11 @@ export default {
       return this.$store.getters.isAuthenticated
     }
   },
+  mounted () {
+    if (this.currentUser) {
+      this.watchPostsChange()
+    }
+  },
   watch: {
     currentUser (user) {
       if (user) {
