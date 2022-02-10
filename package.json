@@ -15,7 +15,7 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "element-ui": "^2.13.0",
     "firebase": "^7.9.3",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.0.0",
     "sass-loader": "^8.0.2"
   },
